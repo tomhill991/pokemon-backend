@@ -9,6 +9,12 @@
       "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true,
       "experimentalDecorators": true,
-      "strictPropertyInitialization": false
-    }
+      "strictPropertyInitialization": false,
+      "types": ["mocha", "node"]
+    },
+    "exclude": [
+        "./tests/",
+        "./node_modules/",
+        "./dist/"
+    ],
 }

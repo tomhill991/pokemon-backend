@@ -5,32 +5,36 @@ import {
 } from './routes'
 const cors = require('cors');
 const app: Application = express()
-const port = process.env.SERVER_PORT || '8080'
 const mongoose = require('mongoose')
+const isTest = process.env.NODE_ENV === 'test'
+const port = !isTest ? (process.env.SERVER_PORT || '8080') : '9999'
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const start = async (): Promise<void> => {
-  try {
+
+try {
     app.use(cors())
     app.use('/api/pokemons', pokemonRouter)
     app.listen(port, () => {
-      console.log(`Server running on port ${port}`);
+        console.log(`Server running on port ${port}`);
     });
-    const connection = await mongoose.connect(process.env.DB_PATH)
-
-    if (!connection) {
-      throw new Error(`Connection to MongoDB failed !: ${connection.error}`);
-    } else {
-        console.log('Connection to MongoDB successful !')
-    }
-
-    mongoose.set('debug', true);
-  } catch (error) {
+} catch (error) {
     console.error(error, 'error');
     process.exit(1);
-  }
-};
+}
 
-void start();
+const connection = mongoose.connect(process.env.DB_PATH)
+
+if (!connection) {
+    throw new Error(`Connection to MongoDB failed !: ${connection.error}`);
+} else {
+    console.log('Connection to MongoDB successful !')
+}
+
+mongoose.set('debug', !isTest);
+
+export default app
+
+
+

@@ -32,7 +32,7 @@ const getDescription = async (name: string) => {
 
         return contents.translated
     } catch(error: any) {
-        console.error(error, 'error')
+        process.env.NODE_ENV !== 'test' && console.error(error, 'error')
         throw new Error(error.message)
     }
 }
@@ -48,9 +48,9 @@ const getPokemon = async (uri: string, name: string) => {
 
         return data
     } catch(error: any) {
-        console.error(error, 'error')
+        process.env.NODE_ENV !== 'test' && console.error(error)
         if(error.response.data === 'Not Found') {
-            throw new Error(`Pokemon name ${name[0].toUpperCase() + name.slice(1, name.length)} was not found. Have you even watched pokemon?`)
+            throw new Error(`Pokemon name ${name} was not found. Have you even watched pokemon?`)
         } else {
             throw new Error(error.message)
         }
@@ -64,7 +64,7 @@ const getShakespeareanDescription = async (description: string) => {
         })
         return data
     } catch(error: any) {
-        console.error(error.data, 'error')
+        process.env.NODE_ENV !== 'test' && console.error(error.data, 'error')
         throw new Error(error.message)
     }
 }

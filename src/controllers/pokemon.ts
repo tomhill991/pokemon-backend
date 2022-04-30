@@ -19,7 +19,7 @@ const getPokemon = async (req: express.Request, res: express.Response) => {
             await pokemon.save()
             return res.status(200).json(pokemon);
         } catch(error: any) {
-            console.error(error)
+            process.env.NODE_ENV !== 'test' && console.error(error)
             return res.status(500).json({
                 error: true,
                 message: error.message
