@@ -30,6 +30,13 @@ describe('Pokemon', () => {
     }
   });
 
+  after(async () => {
+    async function clearDB() {
+      await Pokemon.deleteMany().exec()
+    }
+    clearDB()
+  })
+
   it('should save with name, description, sprite', async () => {
     const pokemon = new Pokemon({
       name: 'charizard',
