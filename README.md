@@ -5,13 +5,10 @@
 - [APIs](#apis)
 - [Testing](#testing)
 - [Technologies used](#technologies-used)
+- [Routes/Endpoints](#routesendpoints)
 ## Background
 What if the description of each Pokemon were to be written in Shakespearean style? Well this is the backend for this!
 ## Installation
-### To run server
-* Run `npm install`
-* Create `.env` and define constants (see .env.example)
-* Run `npm run dev` to start server
 ### MongoDB
 MongoDB is the database that was useed for this project, so you will need to connect to this to get
 the project running
@@ -22,6 +19,10 @@ Alternatively, you can install and use MongoDB on your device [(see instructions
 
 To connect to these, you will need to connect to create a .env file and point the `DB_PATH`
 constant, to the path of your MongoDB
+### To run server
+* Run `npm install`
+* Create `.env` and define constants (see .env.example)
+* Run `npm run dev` to start server
 
 ## APIs
 ## PokeAPI
@@ -42,14 +43,12 @@ Tests can be found in `/tests/pokemon.spec.ts`, and makes use of integration tes
 library
 ### To run tests
 * Run `npm run test`
-## Tech used and versions
+## Technologies used
 * node v17.9.0
 * npm v8.5.5
 * mongo v4.2.8
 * mongoose 6.3.1
-
 ## Routes/Endpoints
-
 <p>Route:        `/api/pokemons/:name`</p>
 <p>Method:       `get`</p>
 <p>Parameters:   `name`</p>
